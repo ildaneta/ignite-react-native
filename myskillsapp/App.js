@@ -1,13 +1,14 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {StatusBar, Platform} from 'react-native';
 
 import Home from './src/pages/Home/index';
 
 const App = () => {
   return (
-    <SafeAreaView>
+    <>
+      <StatusBar backgroundColor="#121015" barStyle={'light-content'} />
       <Home />
-    </SafeAreaView>
+    </>
   );
 };
 
