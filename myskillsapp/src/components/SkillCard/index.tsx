@@ -1,15 +1,15 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, TouchableOpacityProps} from 'react-native';
 
 import {styles} from './styles';
 
-interface ISkillCardProps {
+interface ISkillCardProps extends TouchableOpacityProps {
   children: React.ReactNode;
 }
 
-const SkillCard = ({children}: ISkillCardProps): JSX.Element => {
+const SkillCard = ({children, ...rest}: ISkillCardProps): JSX.Element => {
   return (
-    <TouchableOpacity style={styles.buttonSkill}>
+    <TouchableOpacity style={styles.buttonSkill} {...rest}>
       <Text style={styles.textSkills}>{children}</Text>
     </TouchableOpacity>
   );
