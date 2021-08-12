@@ -2,6 +2,12 @@
 
 ## :octocat: Menu Contents
 
+- [About the project](#pushpin-about-the-project)
+- [Final image](#camera-final-image)
+- [How to clone and run the app](#computer-how-to-clone-and-run-the-app)
+- [Technologies utilized](#wrench-technologies-utilized)
+- [Dev](#pencil-dev)
+
 ## :pushpin: About the project
 
 Using My Skills App, you'll be able to add new skills, generating a list of skills that you identify yourself. You'll also able to exclude the skills items, if you want to.
