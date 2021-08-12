@@ -3,9 +3,13 @@ import {TouchableOpacity, Text} from 'react-native';
 
 import {styles} from './styles';
 
-const SkillCard = ({children, key}) => {
+interface ISkillCardProps {
+  children: React.ReactNode;
+}
+
+const SkillCard = ({children}: ISkillCardProps): JSX.Element => {
   return (
-    <TouchableOpacity style={styles.buttonSkill} key={key}>
+    <TouchableOpacity style={styles.buttonSkill}>
       <Text style={styles.textSkills}>{children}</Text>
     </TouchableOpacity>
   );

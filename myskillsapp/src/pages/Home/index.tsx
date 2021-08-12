@@ -5,17 +5,22 @@ import Button from '../../components/Button/index';
 import SkillCard from '../../components/SkillCard/index';
 import {styles} from './styles';
 
-const Home = () => {
+const Home = (): JSX.Element => {
   const [newSkill, setNewSkill] = useState('');
   const [allSkills, setAllSkills] = useState([]);
   const [greetting, setGreeting] = useState('');
 
   function handleAddNewSkill() {
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill,
+    };
+
     setAllSkills(oldState => [...oldState, newSkill]);
     setNewSkill('');
   }
 
-  function handleInputChange(skill) {
+  function handleInputChange(skill: string) {
     setNewSkill(skill);
   }
 
