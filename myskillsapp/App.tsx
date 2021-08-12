@@ -3,7 +3,7 @@ import {StatusBar} from 'react-native';
 
 import Home from './src/pages/Home/index';
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <>
       <StatusBar backgroundColor="#121015" barStyle={'light-content'} />
