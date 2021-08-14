@@ -1,6 +1,16 @@
 <h1>Ignite React Native - Course</h1>
 
-In this repository you'll find some apps built althugh the knowlegde acquired making the classes of Ignite.
+In this repository you will find examples of applications built using the knowledge gained in the Ignite classes. 
 Ignite - React Native is a bootcamp focused on React Native classes.
 
+## What is the difference between apps and challenges?
+
+Here you'll find apps repository that was built during the class, and the challenges apps are apps built to complete a bootcamp challenge.
+
+## :pencil: Dev
+
+My name is Ilda Neta, and was a pleasure to me built this app.
+To see more details about me and my career, enter into my [linkedIn](https://www.linkedin.com/in/ildaneta/).
+
+Made with love :heartpulse: by Ilda Neta.
  
