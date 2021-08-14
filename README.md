@@ -1,4 +1,4 @@
-<h1>Ignite React Native - Course</h1>
+<h1 align="center">Ignite React Native - Course</h1>
 
 In this repository you will find examples of applications built using the knowledge gained in the Ignite classes. 
 Ignite - React Native is a bootcamp focused on React Native classes.
