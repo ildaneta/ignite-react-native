@@ -5,7 +5,7 @@ Ignite - React Native is a bootcamp focused on React Native classes.
 
 ## What is the difference between apps and challenges?
 
-Here you'll find apps repository that was built during the class, and the challenges apps are apps built to complete a bootcamp challenge.
+Here you'll find apps repositories that was built during the class, and the challenges apps are apps built to complete a bootcamp challenge.
 
 ## :pencil: Dev
 
