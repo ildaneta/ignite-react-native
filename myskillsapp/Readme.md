@@ -32,13 +32,11 @@ cd myskillsapp
 ```
 
 - Installing the dependencies and running the project
-
 ```bash
 yarn install
-
-yarn start //if you already have the application installed at emulator
-yarn run ios or yarn run android //to download the project and in sequence start it.
 ```
+ - If you already have the application installed at emulator run `yarn start`
+ - Else, run `yarn run ios` or `yarn run android` to download the project and in sequence start it.
 
 ## :wrench: Technologies utilized
 
