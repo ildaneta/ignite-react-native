@@ -21,8 +21,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   taskText: {
-    color: '#666',
-    fontFamily: 'Inter-Medium'
+    color: '#f6f6f6',
+    fontFamily: 'Inter-Medium',
+    width: 260
   },
   taskMarkerDone: {
     height: 16,
@@ -36,6 +37,7 @@ export const styles = StyleSheet.create({
   taskTextDone: {
     color: '#1DB863',
     textDecorationLine: 'line-through',
-    fontFamily: 'Inter-Medium'
+    fontFamily: 'Inter-Medium',
+    width: 260
   }
 })
