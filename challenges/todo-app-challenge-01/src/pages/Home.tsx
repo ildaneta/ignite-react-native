@@ -31,7 +31,7 @@ export function Home() {
   }
 
   function handleRemoveTask(id: number) {
-    //TODO - remove task from state
+    setTasks(tasks.filter((item) => item.id !== id));
   }
 
   return (
@@ -52,6 +52,6 @@ export function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EBEBEB',
+    backgroundColor: '#181819',
   },
 });
