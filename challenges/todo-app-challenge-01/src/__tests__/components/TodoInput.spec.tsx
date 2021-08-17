@@ -7,12 +7,14 @@ let mockedAddTask: jest.Mock;
 describe('TodoInput', () => {
   beforeAll(() => {
     mockedAddTask = jest.fn();
-  })
+  });
 
   it('should be able to submit the input text by "submitEditing" event', async () => {
-    const { getByPlaceholderText } = render(<TodoInput addTask={mockedAddTask} />);
-    const inputText = getByPlaceholderText('Adicionar novo todo...');
-    
+    const { getByPlaceholderText } = render(
+      <TodoInput addTask={mockedAddTask} />
+    );
+    const inputText = getByPlaceholderText('Add a new todo...');
+
     fireEvent.changeText(inputText, 'Primeira task');
     fireEvent(inputText, 'submitEditing');
 
@@ -21,8 +23,10 @@ describe('TodoInput', () => {
   });
 
   it('should be able to submit the input text by addButton', () => {
-    const { getByPlaceholderText, getByTestId } = render(<TodoInput addTask={mockedAddTask} />);
-    const inputText = getByPlaceholderText('Adicionar novo todo...');
+    const { getByPlaceholderText, getByTestId } = render(
+      <TodoInput addTask={mockedAddTask} />
+    );
+    const inputText = getByPlaceholderText('Add a new todo...');
     const addButton = getByTestId('add-new-task-button');
 
     fireEvent.changeText(inputText, 'Primeira task');
@@ -33,9 +37,11 @@ describe('TodoInput', () => {
   });
 
   it('should not be able to add an empty task', () => {
-    const { getByPlaceholderText } = render(<TodoInput addTask={mockedAddTask} />);
-    const inputText = getByPlaceholderText('Adicionar novo todo...');
-    
+    const { getByPlaceholderText } = render(
+      <TodoInput addTask={mockedAddTask} />
+    );
+    const inputText = getByPlaceholderText('Add a new todo...');
+
     fireEvent.changeText(inputText, '');
     fireEvent(inputText, 'submitEditing');
 
