@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 
 const Dashboard = (): JSX.Element => {
   return (
-    <View>
+    <View style={{ marginTop: 20 }}>
       <Text>Dashboard</Text>
     </View>
   );
