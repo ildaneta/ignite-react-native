@@ -3,7 +3,7 @@ import theme from '../../../global/styles/theme';
 
 export const styles = StyleSheet.create({
   containerInput: {
-    backgroundColor: theme.colors.background_gray,
+    backgroundColor: theme.colors.background_white_medium,
     width: '100%',
     height: 55,
     borderRadius: 5,
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     fontFamily: theme.fonts.regular,
-    color: theme.colors.textMediumGray
+    color: theme.colors.secondary
   },
 
   button: {
