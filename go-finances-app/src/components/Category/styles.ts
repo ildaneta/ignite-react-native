@@ -9,11 +9,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignContent: 'center',
-    // justifyContent: 'flex-start',
-    paddingLeft: 24,
+    paddingHorizontal: 24,
     borderColor: theme.colors.secondary,
     borderTopWidth: 1,
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    justifyContent: 'space-between'
   },
 
   text: {
@@ -25,5 +25,10 @@ export const styles = StyleSheet.create({
   icon: {
     width: 26,
     textAlign: 'center'
+  }, 
+
+  containerIconName: {
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 })
