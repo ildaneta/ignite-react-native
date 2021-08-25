@@ -10,16 +10,18 @@ import { Feather } from '@expo/vector-icons';
 
 import { styles } from './styles';
 
-type InputSelectProps = TouchableOpacityProps;
+interface InputSelectProps extends TouchableOpacityProps{
+  categoryTitle: string
+}
 
-const InputSelect = ({ ...rest }: InputSelectProps): JSX.Element => {
+const InputSelect = ({ categoryTitle, ...rest }: InputSelectProps): JSX.Element => {
   return (
     <TouchableOpacity
       style={styles.containerInput}
       {...rest}
       activeOpacity={0.8}
     >
-      <Text style={styles.text}>Categoria</Text>
+      <Text style={styles.text}>{categoryTitle}</Text>
       <Feather name="chevron-down" color={theme.colors.primary} size={20} />
     </TouchableOpacity>
   );
