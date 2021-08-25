@@ -11,7 +11,7 @@ const Input = ({ ...rest }: InputProps): JSX.Element => {
     <TextInput
       {...rest}
       style={styles.containerInput}
-      placeholderTextColor={theme.colors.textMediumGray}
+      placeholderTextColor={theme.colors.background_gray}
     />
   );
 };
