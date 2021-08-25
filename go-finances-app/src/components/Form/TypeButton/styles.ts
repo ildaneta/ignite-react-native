@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     marginLeft: 24,
     fontFamily: theme.fonts.medium,
     fontSize: 14,
-    color: theme.colors.textGray
+    color: theme.colors.shape
   },
 
   activeIncome: {
