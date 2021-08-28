@@ -94,6 +94,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RNCMaskedView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>RNGestureHandler.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -280,6 +285,11 @@
 			<false/>
 		</dict>
 		<key>glog.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>react-native-safe-area-context.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
