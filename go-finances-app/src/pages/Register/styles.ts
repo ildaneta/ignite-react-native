@@ -27,6 +27,18 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
 
+  containerTypeButtonError: {
+    width: '88%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginHorizontal: 24,
+    marginBottom: 10,
+  },
+
+  containerError: {
+    marginLeft: 24
+  },
+
   containerTypeButton: {
     flexDirection: 'row',
     justifyContent: 'space-between',
