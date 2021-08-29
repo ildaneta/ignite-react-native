@@ -19,7 +19,7 @@ export const theme = {
     background_gray: '#777',
     background_gray_light: '#999',
     background_white_medium: '#ededed',
-    highLight: '#af67a3'
+    highLight: '#C94F7C'
   },
 
   fonts: {
