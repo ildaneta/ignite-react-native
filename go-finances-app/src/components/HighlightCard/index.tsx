@@ -30,7 +30,9 @@ const typeIcon = (transactionType: string) => {
       />
     );
   } else {
-    return <Feather name="dollar-sign" color={theme.colors.shape} size={34} />;
+    return (
+      <Feather name="dollar-sign" color={theme.colors.textGray} size={34} />
+    );
   }
 };
 
@@ -69,7 +71,7 @@ const HighlightCard = ({
       </View>
 
       <View style={styles.containerValue}>
-        <Text style={styles.value}>R$ {amount}</Text>
+        <Text style={styles.value}>$ {amount}</Text>
 
         {description(type, lastTransaction)}
       </View>
