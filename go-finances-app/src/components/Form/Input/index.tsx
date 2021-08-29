@@ -1,16 +1,22 @@
 import React from 'react';
-import { View, Text, TextInput, TextInputProps } from 'react-native';
+import { TextInput, TextInputProps } from 'react-native';
 import theme from '../../../global/styles/theme';
 
 import { styles } from './styles';
 
-type InputProps = TextInputProps;
+interface IInputProps extends TextInputProps {
+  hasError: boolean;
+}
 
-const Input = ({ ...rest }: InputProps): JSX.Element => {
+const Input = ({ hasError, ...rest }: IInputProps): JSX.Element => {
   return (
     <TextInput
       {...rest}
-      style={styles.containerInput}
+      style={
+        hasError
+          ? [styles.containerInput, styles.inputError]
+          : styles.containerInput
+      }
       placeholderTextColor={theme.colors.background_gray}
     />
   );

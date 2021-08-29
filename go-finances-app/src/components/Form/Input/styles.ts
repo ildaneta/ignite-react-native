@@ -13,6 +13,11 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     fontSize: 14,
     fontFamily: theme.fonts.regular,
-    color: theme.colors.secondary
+    color: theme.colors.secondary,
   },
+
+  inputError: {
+    borderWidth: 2,
+    borderColor: theme.colors.attention,
+  }
 })
