@@ -34,6 +34,10 @@ export const styles = StyleSheet.create({
   },
 
   logoff: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
