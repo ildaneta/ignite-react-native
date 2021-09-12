@@ -19,6 +19,7 @@
     "expo-font": "~9.1.0",
     "expo-splash-screen": "~0.10.2",
     "expo-updates": "~0.5.4",
+    "intl": "^1.2.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^7.14.0",
