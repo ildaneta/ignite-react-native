@@ -1,14 +1,19 @@
-import React from 'react';
-import { TouchableOpacity, TouchableOpacityProps, Text, View } from 'react-native';
-import { FontAwesome, Feather } from '@expo/vector-icons';
-import theme from '../../global/styles/theme';
+import React from "react";
+import {
+  TouchableOpacity,
+  TouchableOpacityProps,
+  Text,
+  View,
+} from "react-native";
+import { FontAwesome, Feather } from "@expo/vector-icons";
+import theme from "../../global/styles/theme";
 
-import { styles } from './styles';
+import { styles } from "./styles";
 
 interface ICategoryProps extends TouchableOpacityProps {
   categoryName: string;
   iconName: string;
-  isActive: boolean
+  isActive: boolean;
 }
 
 const Category = ({
@@ -30,7 +35,7 @@ const Category = ({
       </View>
 
       {isActive && (
-        <Feather name="check" color={theme.colors.primary} size={20}/>
+        <Feather name="check" color={theme.colors.primary} size={20} />
       )}
     </TouchableOpacity>
   );
