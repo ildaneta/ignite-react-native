@@ -1,99 +1,98 @@
-import React from 'react';
-import { ScrollView, View, Text, FlatList, StatusBar } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { ScrollView, View, Text, FlatList } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import HighlightCard from '../../components/HighlightCard';
-import Header from '../../components/Header';
-import TransactionCard from '../../components/TransactionCard';
+import HighlightCard from "../../components/HighlightCard";
+import Header from "../../components/Header";
+import TransactionCard from "../../components/TransactionCard";
 
-import { styles } from './styles';
+import { styles } from "./styles";
 
-import { ITransactionCardProps } from '../../components/TransactionCard';
-import theme from '../../global/styles/theme';
-
+import { ITransactionCardProps } from "../../components/TransactionCard";
 interface DataListProps extends ITransactionCardProps {
   id: string;
 }
 
 const Dashboard = (): JSX.Element => {
-  const data: DataListProps[] = [
-    {
-      id: '1',
-      title: 'Website development',
-      amount: '12.000,00',
-      category: {
-        name: 'Work',
-        icon: 'dollar-sign',
-      },
-      date: '14/04/2021',
-      type: 'positive',
-    },
+  const [data, setData] = useState<DataListProps[]>([]);
 
-    {
-      id: '2',
-      title: 'iFood',
-      amount: '120,00',
-      category: {
-        name: 'Food',
-        icon: 'dollar-sign',
-      },
-      date: '14/04/2021',
-      type: 'negative',
-    },
-    {
-      id: '3',
-      title: 'Zara',
-      amount: '346,50',
-      category: {
-        name: 'Clothes',
-        icon: 'store-alt',
-      },
-      date: '14/04/2021',
-      type: 'negative',
-    },
-  ];
+  const loadData = async () => {
+    const transactionsKey = "@gofinances:transactions";
+    const response = await AsyncStorage.getItem(transactionsKey);
+
+    const allTransactions = response ? JSON.parse(response) : [];
+
+    const transactionsFormatted: DataListProps[] = allTransactions.map(
+      (item: DataListProps) => {
+        const amount = Number(item.amount).toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+
+        const date = Intl.DateTimeFormat("pt-BR", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        }).format(new Date(item.date));
+
+        return {
+          id: item.id,
+          name: item.name,
+          category: item.category,
+          type: item.type,
+          amount: amount,
+          date: date,
+        };
+      }
+    );
+    console.log(allTransactions);
+
+    setData(transactionsFormatted);
+  };
+
+  useEffect(() => {
+    loadData();
+  }, [data]);
 
   return (
-    <>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor={theme.colors.secondary}
-      />
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <Header />
+    <ScrollView style={styles.container}>
+      <Header onPress={() => {}} />
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <HighlightCard
-            title="Receipts"
-            amount="17.420,00"
-            lastTransaction="April 13th"
-            type="up"
-          />
-          <HighlightCard
-            title="Outflows"
-            amount="1.259,00"
-            lastTransaction="April 3th"
-            type="down"
-          />
-          <HighlightCard
-            title="Total"
-            amount="16.141,50"
-            lastTransaction="April from 1th to 16th"
-            type="total"
-          />
-        </ScrollView>
-
-        <Text style={styles.title}>Listing</Text>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ marginBottom: 40 }}
-          data={data}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => <TransactionCard data={item} />}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <HighlightCard
+          title="Receipts"
+          amount="17.420,00"
+          lastTransaction="April 13th"
+          type="up"
         />
-
-        <View style={{ height: 20, marginBottom: 20 }} />
+        <HighlightCard
+          title="Outflows"
+          amount="1.259,00"
+          lastTransaction="April 3th"
+          type="down"
+        />
+        <HighlightCard
+          title="Total"
+          amount="16.141,50"
+          lastTransaction="April from 1th to 16th"
+          type="total"
+        />
       </ScrollView>
-    </>
+
+      <Text style={styles.title}>Listing</Text>
+
+      <FlatList
+        style={{ flex: 0 }}
+        initialNumToRender={data.length}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ marginBottom: 40 }}
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <TransactionCard data={item} />}
+      />
+
+      <View style={{ height: 20, marginBottom: 20 }} />
+    </ScrollView>
   );
 };
 
