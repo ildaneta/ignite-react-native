@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Text, Image } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
-import theme from '../../global/styles/theme';
+import React from "react";
+import { View, Text } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import theme from "../../global/styles/theme";
 
-import { styles } from './styles';
+import { styles } from "./styles";
 
 interface Category {
   name: string;
@@ -11,8 +11,8 @@ interface Category {
 }
 
 export interface ITransactionCardProps {
-  type: 'positive' | 'negative';
-  title: string;
+  type: "Income" | "Outcome";
+  name: string;
   amount: string;
   category: Category;
   date: string;
@@ -25,21 +25,21 @@ interface Props {
 const TransactionCard = ({ data }: Props): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Text style={styles.expenseTitle}>{data.title}</Text>
+      <Text style={styles.expenseTitle}>{data.name}</Text>
 
-      {data.type === 'positive' ? (
+      {data.type === "Income" ? (
         <Text style={[styles.expenseValue, { color: theme.colors.success }]}>
-          R$ {data.amount}
+          {data.amount}
         </Text>
       ) : (
         <Text style={[styles.expenseValue, { color: theme.colors.attention }]}>
-          - R$ {data.amount}
+          - {data.amount}
         </Text>
       )}
 
       <View style={styles.containerExpenses}>
         <View style={styles.containerExpensesType}>
-          <FontAwesome5
+          <FontAwesome
             name={data.category.icon}
             color={theme.colors.textGrayDarker}
             size={18}
