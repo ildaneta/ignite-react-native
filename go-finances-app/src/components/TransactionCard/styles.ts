@@ -1,12 +1,12 @@
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 import theme from '../../global/styles/theme'
 
 export const styles = StyleSheet.create({
 container: {
   backgroundColor: theme.colors.background_light,
-  width: 327,
-  height: 128,
-  padding: 24,
+  width: '100%',
+  paddingVertical: 20,
+  paddingHorizontal: 20,
   borderRadius: 5,
   marginBottom: 16
 },
@@ -16,7 +16,7 @@ expenseTitle: {
   fontFamily: theme.fonts.regular,
   fontSize: 14,
   color: theme.colors.shape,
-  lineHeight: 21
+  marginBottom: 10
 },
 
 expenseValue: {
@@ -27,7 +27,7 @@ expenseValue: {
 containerExpenses: {
   flexDirection: 'row',
   justifyContent: 'space-between',
-  marginTop: 18,
+  marginTop: 12,
   alignItems: 'center'
 }, 
 
