@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { ScrollView, View, Text, FlatList } from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import {
+  ScrollView,
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 import HighlightCard from "../../components/HighlightCard";
 import Header from "../../components/Header";
@@ -13,17 +20,39 @@ interface DataListProps extends ITransactionCardProps {
   id: string;
 }
 
+interface IHighlightProps {
+  amount: string;
+}
+interface IHighlightData {
+  entries: IHighlightProps;
+  expensive: IHighlightProps;
+  total: IHighlightProps;
+}
+
 const Dashboard = (): JSX.Element => {
   const [data, setData] = useState<DataListProps[]>([]);
+  const [highlightData, setHighlightData] = useState<IHighlightData>(
+    {} as IHighlightData
+  );
+  const [isLoading, setIsLoading] = useState(true);
 
   const loadData = async () => {
     const transactionsKey = "@gofinances:transactions";
     const response = await AsyncStorage.getItem(transactionsKey);
 
+    let entriesTotal = 0;
+    let expensivesTotal = 0;
+
     const allTransactions = response ? JSON.parse(response) : [];
 
     const transactionsFormatted: DataListProps[] = allTransactions.map(
       (item: DataListProps) => {
+        if (item.type === "Income") {
+          entriesTotal += Number(item.amount);
+        } else {
+          expensivesTotal += Number(item.amount);
+        }
+
         const amount = Number(item.amount).toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
@@ -45,53 +74,96 @@ const Dashboard = (): JSX.Element => {
         };
       }
     );
-    console.log(allTransactions);
+
+    const total = entriesTotal - expensivesTotal;
+    // const majorDataEntries = data
+    //   .filter((transaction) => transaction.type === "Income")
+    //   .map((transaction) => transaction.date);
+
+    // console.log(majorDataEntries);
+
+    // const lastTransactionsEntriesDate = new Date(
+    //   Math.max.apply(Math, majorDataEntries)
+    // );
 
     setData(transactionsFormatted);
+    setHighlightData({
+      entries: {
+        amount: entriesTotal.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }),
+      },
+      expensive: {
+        amount: expensivesTotal.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }),
+      },
+      total: {
+        amount: total.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }),
+      },
+    });
+    setIsLoading(false);
   };
 
   useEffect(() => {
     loadData();
-  }, [data]);
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadData();
+    }, [])
+  );
 
   return (
     <ScrollView style={styles.container}>
-      <Header onPress={() => {}} />
+      {isLoading ? (
+        <ActivityIndicator color={"#fff"} />
+      ) : (
+        <>
+          <Header onPress={() => {}} />
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <HighlightCard
-          title="Receipts"
-          amount="17.420,00"
-          lastTransaction="April 13th"
-          type="up"
-        />
-        <HighlightCard
-          title="Outflows"
-          amount="1.259,00"
-          lastTransaction="April 3th"
-          type="down"
-        />
-        <HighlightCard
-          title="Total"
-          amount="16.141,50"
-          lastTransaction="April from 1th to 16th"
-          type="total"
-        />
-      </ScrollView>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <HighlightCard
+              title="Receipts"
+              amount={highlightData?.entries?.amount}
+              lastTransaction="April 13th"
+              type="up"
+            />
+            <HighlightCard
+              title="Outflows"
+              amount={highlightData?.expensive?.amount}
+              lastTransaction="April 3th"
+              type="down"
+            />
+            <HighlightCard
+              title="Total"
+              amount={highlightData.total.amount}
+              lastTransaction="April from 1th to 16th"
+              type="total"
+            />
+          </ScrollView>
 
-      <Text style={styles.title}>Listing</Text>
+          {data.length >= 1 ? <Text style={styles.title}>Listing</Text> : <></>}
 
-      <FlatList
-        style={{ flex: 0 }}
-        initialNumToRender={data.length}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ marginBottom: 40 }}
-        data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <TransactionCard data={item} />}
-      />
+          <FlatList
+            style={{ flex: 0 }}
+            initialNumToRender={data.length}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ marginBottom: 40 }}
+            data={data}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <TransactionCard data={item} />}
+          />
 
-      <View style={{ height: 20, marginBottom: 20 }} />
+          <View style={{ height: 20, marginBottom: 20 }} />
+        </>
+      )}
     </ScrollView>
   );
 };
