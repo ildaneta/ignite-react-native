@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
   View,
-  StatusBar,
   Modal,
   SafeAreaView,
   Keyboard,
@@ -12,7 +11,6 @@ import {
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import uuid from "uuid";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { styles } from "./styles";
@@ -74,7 +72,7 @@ const Register = (): JSX.Element => {
       return Alert.alert("Selecione a categoria");
 
     const newTransactionData = {
-      id: String(uuid.v4()),
+      id: String(new Date()),
       name: form.name,
       amount: form.price,
       category,
@@ -99,7 +97,7 @@ const Register = (): JSX.Element => {
       setCategory({ key: "category", name: "Categoria" });
       navigation.navigate("Listing");
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
       Alert.alert("Não foi possível salver");
     }
   };
