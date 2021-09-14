@@ -1,11 +1,11 @@
-import React from 'react';
-import { View, Text, TextInputProps } from 'react-native';
-import { Control, Controller } from 'react-hook-form';
+import React from "react";
+import { View, TextInputProps } from "react-native";
+import { Control, Controller } from "react-hook-form";
 
-import Input from '../Input';
+import Input from "../Input";
 
-import { styles } from './styles';
-import ErrorText from '../../ErrorText';
+import { styles } from "./styles";
+import ErrorText from "../../ErrorText";
 
 interface IInputFormProps extends TextInputProps {
   control: Control;

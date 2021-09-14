@@ -1,19 +1,19 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
-import theme from '../../global/styles/theme';
+import React from "react";
+import { View, Text } from "react-native";
+import { Ionicons, Feather } from "@expo/vector-icons";
+import theme from "../../global/styles/theme";
 
-import { styles } from './styles';
+import { styles } from "./styles";
 
 interface IHighlightCard {
   title: string;
   amount: string;
   lastTransaction: string;
-  type: 'up' | 'down' | 'total';
+  type: "up" | "down" | "total";
 }
 
 const typeIcon = (transactionType: string) => {
-  if (transactionType === 'up') {
+  if (transactionType === "up") {
     return (
       <Ionicons
         name="arrow-up-circle-outline"
@@ -21,7 +21,7 @@ const typeIcon = (transactionType: string) => {
         size={34}
       />
     );
-  } else if (transactionType === 'down') {
+  } else if (transactionType === "down") {
     return (
       <Ionicons
         name="arrow-down-circle-outline"
@@ -37,11 +37,11 @@ const typeIcon = (transactionType: string) => {
 };
 
 const description = (transactionType: string, lastTransaction: string) => {
-  if (transactionType === 'up') {
+  if (transactionType === "up") {
     return (
       <Text style={styles.description}>Last entry was {lastTransaction}</Text>
     );
-  } else if (transactionType === 'down') {
+  } else if (transactionType === "down") {
     return (
       <Text style={styles.description}>Last out was {lastTransaction}</Text>
     );
@@ -59,7 +59,7 @@ const HighlightCard = ({
   return (
     <View
       style={
-        type === 'total'
+        type === "total"
           ? [styles.container, { backgroundColor: theme.colors.highLight }]
           : [styles.container, { backgroundColor: theme.colors.primary }]
       }
@@ -71,7 +71,7 @@ const HighlightCard = ({
       </View>
 
       <View style={styles.containerValue}>
-        <Text style={styles.value}>$ {amount}</Text>
+        <Text style={styles.value}>{amount}</Text>
 
         {description(type, lastTransaction)}
       </View>

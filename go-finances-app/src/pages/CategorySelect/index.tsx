@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, SafeAreaView, View, Text, StatusBar } from "react-native";
+import { FlatList, SafeAreaView, View, Text } from "react-native";
 
 import Category from "../../components/Category";
 import Button from "../../components/Form/Button";
