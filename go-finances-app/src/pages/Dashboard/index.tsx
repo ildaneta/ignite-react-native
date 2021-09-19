@@ -16,6 +16,7 @@ import TransactionCard from "../../components/TransactionCard";
 import { styles } from "./styles";
 
 import { ITransactionCardProps } from "../../components/TransactionCard";
+import { month } from "../../utils/date";
 interface DataListProps extends ITransactionCardProps {
   id: string;
 }
@@ -28,6 +29,57 @@ interface IHighlightData {
   expensive: IHighlightProps;
   total: IHighlightProps;
 }
+
+type typeProp = "Income" | "Outcome";
+
+const firstDateTransaction = (transactions: DataListProps[]) => {
+  const dates = transactions
+    .map((transaction: ITransactionCardProps) => transaction.date)
+    .sort();
+
+  const firstDate = dates[0].split("")[0] + dates[0].split("")[1];
+
+  return `${firstDate}th`;
+};
+
+const latestDate = (transactions: DataListProps[], type: typeProp) => {
+  const majorDate = transactions
+    .filter((transaction: ITransactionCardProps) => transaction.type === type)
+    .map((transaction: ITransactionCardProps) => transaction.date)
+    .sort()
+    .reverse()[0];
+
+  return majorDate;
+};
+
+const latestDay = (date: DataListProps[], type: typeProp) => {
+  const dateSplited = latestDate(date, type).split("");
+  const day = dateSplited[0] + dateSplited[1];
+
+  return `${day}th`;
+};
+
+const lastMonthTotal = (date: DataListProps[]) => {
+  const dates = date
+    .map((transaction: ITransactionCardProps) => transaction.date)
+    .sort()
+    .reverse();
+
+  const lastMonth = dates[0];
+
+  return month(lastMonth);
+};
+
+const latestDayTotal = (date: DataListProps[]) => {
+  const dates = date
+    .map((transaction: ITransactionCardProps) => transaction.date)
+    .sort()
+    .reverse();
+
+  const firstDate = dates[0].split("")[0] + dates[0].split("")[1];
+
+  return `${firstDate}th`;
+};
 
 const Dashboard = (): JSX.Element => {
   const [data, setData] = useState<DataListProps[]>([]);
@@ -76,15 +128,6 @@ const Dashboard = (): JSX.Element => {
     );
 
     const total = entriesTotal - expensivesTotal;
-    // const majorDataEntries = data
-    //   .filter((transaction) => transaction.type === "Income")
-    //   .map((transaction) => transaction.date);
-
-    // console.log(majorDataEntries);
-
-    // const lastTransactionsEntriesDate = new Date(
-    //   Math.max.apply(Math, majorDataEntries)
-    // );
 
     setData(transactionsFormatted);
     setHighlightData({
@@ -132,19 +175,38 @@ const Dashboard = (): JSX.Element => {
             <HighlightCard
               title="Receipts"
               amount={highlightData?.entries?.amount}
-              lastTransaction="April 13th"
+              lastTransaction={
+                data.some((item) => item.type === "Income")
+                  ? `Last entry was ${month(
+                      latestDate(data, "Income")
+                    )} ${latestDay(data, "Income")}`
+                  : ""
+              }
               type="up"
             />
             <HighlightCard
               title="Outflows"
               amount={highlightData?.expensive?.amount}
-              lastTransaction="April 3th"
+              lastTransaction={
+                data.some((item) => item.type === "Outcome")
+                  ? `Last out was ${month(
+                      latestDate(data, "Outcome")
+                    )} ${latestDay(data, "Outcome")}`
+                  : ""
+              }
               type="down"
             />
             <HighlightCard
               title="Total"
               amount={highlightData.total.amount}
-              lastTransaction="April from 1th to 16th"
+              lastTransaction={
+                data.some((item) => item.type === "Income") ||
+                data.some((item) => item.type === "Outcome")
+                  ? `${lastMonthTotal(data)} from ${firstDateTransaction(
+                      data
+                    )} to ${latestDayTotal(data)}`
+                  : ""
+              }
               type="total"
             />
           </ScrollView>
