@@ -15,9 +15,9 @@ import TransactionCard from "../../components/TransactionCard";
 
 import { styles } from "./styles";
 
-import { ITransactionCardProps } from "../../components/TransactionCard";
+import { ITransactionProps } from "../../components/TransactionCard";
 import { month } from "../../utils/date";
-interface DataListProps extends ITransactionCardProps {
+interface DataListProps extends ITransactionProps {
   id: string;
 }
 
@@ -34,7 +34,7 @@ type typeProp = "Income" | "Outcome";
 
 const firstDateTransaction = (transactions: DataListProps[]) => {
   const dates = transactions
-    .map((transaction: ITransactionCardProps) => transaction.date)
+    .map((transaction: ITransactionProps) => transaction.date)
     .sort();
 
   const firstDate = dates[0].split("")[0] + dates[0].split("")[1];
@@ -44,8 +44,8 @@ const firstDateTransaction = (transactions: DataListProps[]) => {
 
 const latestDate = (transactions: DataListProps[], type: typeProp) => {
   const majorDate = transactions
-    .filter((transaction: ITransactionCardProps) => transaction.type === type)
-    .map((transaction: ITransactionCardProps) => transaction.date)
+    .filter((transaction: ITransactionProps) => transaction.type === type)
+    .map((transaction: ITransactionProps) => transaction.date)
     .sort()
     .reverse()[0];
 
@@ -61,7 +61,7 @@ const latestDay = (date: DataListProps[], type: typeProp) => {
 
 const lastMonthTotal = (date: DataListProps[]) => {
   const dates = date
-    .map((transaction: ITransactionCardProps) => transaction.date)
+    .map((transaction: ITransactionProps) => transaction.date)
     .sort()
     .reverse();
 
@@ -72,7 +72,7 @@ const lastMonthTotal = (date: DataListProps[]) => {
 
 const latestDayTotal = (date: DataListProps[]) => {
   const dates = date
-    .map((transaction: ITransactionCardProps) => transaction.date)
+    .map((transaction: ITransactionProps) => transaction.date)
     .sort()
     .reverse();
 

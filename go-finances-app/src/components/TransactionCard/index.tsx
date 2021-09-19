@@ -10,7 +10,7 @@ interface Category {
   icon: string;
 }
 
-export interface ITransactionCardProps {
+export interface ITransactionProps {
   type: "Income" | "Outcome";
   name: string;
   amount: string;
@@ -19,7 +19,7 @@ export interface ITransactionCardProps {
 }
 
 interface Props {
-  data: ITransactionCardProps;
+  data: ITransactionProps;
 }
 
 const TransactionCard = ({ data }: Props): JSX.Element => {
