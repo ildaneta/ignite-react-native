@@ -36,20 +36,6 @@ const typeIcon = (transactionType: string) => {
   }
 };
 
-const description = (transactionType: string, lastTransaction: string) => {
-  if (transactionType === "up") {
-    return (
-      <Text style={styles.description}>Last entry was {lastTransaction}</Text>
-    );
-  } else if (transactionType === "down") {
-    return (
-      <Text style={styles.description}>Last out was {lastTransaction}</Text>
-    );
-  } else {
-    return <Text style={styles.description}>{lastTransaction}</Text>;
-  }
-};
-
 const HighlightCard = ({
   title,
   amount,
@@ -73,7 +59,7 @@ const HighlightCard = ({
       <View style={styles.containerValue}>
         <Text style={styles.value}>{amount}</Text>
 
-        {description(type, lastTransaction)}
+        <Text style={styles.description}>{lastTransaction}</Text>
       </View>
     </View>
   );
