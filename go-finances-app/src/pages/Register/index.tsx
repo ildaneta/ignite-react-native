@@ -43,7 +43,7 @@ const Register = (): JSX.Element => {
 
   const [category, setCategory] = useState({
     key: "category",
-    name: "Categoria",
+    name: "Category",
   });
 
   const {
@@ -66,10 +66,9 @@ const Register = (): JSX.Element => {
   };
 
   const handleSendRegister = async (form: IFormData) => {
-    if (!transactionType) return Alert.alert("Selecione o tipo da transação");
+    if (!transactionType) return Alert.alert("Select the kind of transaction");
 
-    if (category.key === "category")
-      return Alert.alert("Selecione a categoria");
+    if (category.key === "category") return Alert.alert("Select the category");
 
     const newTransactionData = {
       id: String(new Date()),
@@ -94,11 +93,11 @@ const Register = (): JSX.Element => {
 
       reset();
       setTransactionType("");
-      setCategory({ key: "category", name: "Categoria" });
+      setCategory({ key: "category", name: "Category" });
       navigation.navigate("Listing");
     } catch (error) {
       console.log(error);
-      Alert.alert("Não foi possível salver");
+      Alert.alert("Was not possible to save");
     }
   };
 
