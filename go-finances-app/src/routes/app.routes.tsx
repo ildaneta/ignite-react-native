@@ -1,21 +1,22 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { View } from 'react-native';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { View } from "react-native";
 
-import theme from '../global/styles/theme';
+import theme from "../global/styles/theme";
 
 const Tab = createBottomTabNavigator();
 
-import Dashboard from '../pages/Dashboard';
-import Register from '../pages/Register';
+import Dashboard from "../pages/Dashboard";
+import Register from "../pages/Register";
+import Resume from "../pages/Resume";
 
 const routes = (): JSX.Element => {
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: theme.colors.highLight,
-        tabBarLabelPosition: 'beside-icon',
+        tabBarLabelPosition: "beside-icon",
         tabBarStyle: {
           height: 80,
           paddingBottom: 10,
@@ -25,7 +26,7 @@ const routes = (): JSX.Element => {
           fontFamily: theme.fonts.medium,
         },
         tabBarBackground: () => (
-          <View style={{ backgroundColor: '#202023', flex: 1 }} />
+          <View style={{ backgroundColor: "#202023", flex: 1 }} />
         ),
       }}
     >
@@ -33,7 +34,7 @@ const routes = (): JSX.Element => {
         name="Listing"
         component={Dashboard}
         options={{
-          headerTitleAlign: 'center',
+          headerTitleAlign: "center",
           headerBackgroundContainerStyle: {
             backgroundColor: theme.colors.background,
           },
@@ -47,7 +48,7 @@ const routes = (): JSX.Element => {
         name="Register"
         component={Register}
         options={{
-          headerTitleAlign: 'center',
+          headerTitleAlign: "center",
           headerStyle: {
             backgroundColor: theme.colors.secondary,
           },
@@ -59,9 +60,9 @@ const routes = (): JSX.Element => {
       />
       <Tab.Screen
         name="Resume"
-        component={Register}
+        component={Resume}
         options={{
-          headerTitleAlign: 'center',
+          headerTitleAlign: "center",
           headerStyle: {
             backgroundColor: theme.colors.secondary,
           },
