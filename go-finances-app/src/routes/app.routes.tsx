@@ -15,7 +15,7 @@ const routes = (): JSX.Element => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: theme.colors.highLight,
+        tabBarActiveTintColor: theme.colors.highLightMenu,
         tabBarLabelPosition: "beside-icon",
         tabBarStyle: {
           height: 80,
@@ -49,6 +49,7 @@ const routes = (): JSX.Element => {
         component={Register}
         options={{
           headerTitleAlign: "center",
+          headerTitle: "Register an Input or Output",
           headerStyle: {
             backgroundColor: theme.colors.secondary,
           },
@@ -59,10 +60,11 @@ const routes = (): JSX.Element => {
         }}
       />
       <Tab.Screen
-        name="Resume"
+        name="Summary"
         component={Resume}
         options={{
           headerTitleAlign: "center",
+          headerTitle: "Expense Summary",
           headerStyle: {
             backgroundColor: theme.colors.secondary,
           },
