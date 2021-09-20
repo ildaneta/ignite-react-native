@@ -8,5 +8,10 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 24,
     paddingBottom: 30
+  },
+
+  chartContainer: {
+    width: '100%',
+    alignItems: 'center'
   }
 }) 
