@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     flex: 1,
     height: '100%',
-    paddingVertical: 10
   },
 
   form: {
