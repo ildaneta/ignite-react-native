@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
   ScrollView,
   View,
@@ -12,12 +12,19 @@ import { useFocusEffect } from "@react-navigation/native";
 import HighlightCard from "../../components/HighlightCard";
 import Header from "../../components/Header";
 import TransactionCard from "../../components/TransactionCard";
+import { ITransactionProps } from "../../components/TransactionCard";
+
+import { month } from "../../utils/date";
+import {
+  firstDateTransaction,
+  lastMonthTotal,
+  latestDate,
+  latestDay,
+  latestDayTotal,
+} from "../../utils/dashboard";
 
 import { styles } from "./styles";
-
-import { ITransactionProps } from "../../components/TransactionCard";
-import { month } from "../../utils/date";
-interface DataListProps extends ITransactionProps {
+export interface DataListProps extends ITransactionProps {
   id: string;
 }
 
@@ -29,57 +36,6 @@ interface IHighlightData {
   expensive: IHighlightProps;
   total: IHighlightProps;
 }
-
-type typeProp = "Income" | "Outcome";
-
-const firstDateTransaction = (transactions: DataListProps[]) => {
-  const dates = transactions
-    .map((transaction: ITransactionProps) => transaction.date)
-    .sort();
-
-  const firstDate = dates[0].split("")[0] + dates[0].split("")[1];
-
-  return `${firstDate}th`;
-};
-
-const latestDate = (transactions: DataListProps[], type: typeProp) => {
-  const majorDate = transactions
-    .filter((transaction: ITransactionProps) => transaction.type === type)
-    .map((transaction: ITransactionProps) => transaction.date)
-    .sort()
-    .reverse()[0];
-
-  return majorDate;
-};
-
-const latestDay = (date: DataListProps[], type: typeProp) => {
-  const dateSplited = latestDate(date, type).split("");
-  const day = dateSplited[0] + dateSplited[1];
-
-  return `${day}th`;
-};
-
-const lastMonthTotal = (date: DataListProps[]) => {
-  const dates = date
-    .map((transaction: ITransactionProps) => transaction.date)
-    .sort()
-    .reverse();
-
-  const lastMonth = dates[0];
-
-  return month(lastMonth);
-};
-
-const latestDayTotal = (date: DataListProps[]) => {
-  const dates = date
-    .map((transaction: ITransactionProps) => transaction.date)
-    .sort()
-    .reverse();
-
-  const firstDate = dates[0].split("")[0] + dates[0].split("")[1];
-
-  return `${firstDate}th`;
-};
 
 const Dashboard = (): JSX.Element => {
   const [data, setData] = useState<DataListProps[]>([]);
