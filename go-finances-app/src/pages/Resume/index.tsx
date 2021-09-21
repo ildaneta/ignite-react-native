@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { View, ScrollView } from "react-native";
+import React, { useCallback, useState } from "react";
+import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { VictoryPie } from "victory-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { addMonths, subMonths, format } from "date-fns";
+import { useFocusEffect } from "@react-navigation/core";
 
 import HistoryCard from "../../components/HistoryCard";
 
@@ -23,6 +26,18 @@ const Resume = (): JSX.Element => {
     ITotalCategoryExpensiveProps[]
   >([]);
 
+  const [summaryDate, setSummaryDate] = useState(new Date());
+
+  const handleChangeDate = (action: "next" | "prev") => {
+    if (action === "next") {
+      const newDate = addMonths(summaryDate, 1);
+      setSummaryDate(newDate);
+    } else {
+      const newDate = subMonths(summaryDate, 1);
+      setSummaryDate(newDate);
+    }
+  };
+
   const loadData = async () => {
     const transactionsKey = "@gofinances:transactions";
     const response = await AsyncStorage.getItem(transactionsKey);
@@ -30,7 +45,12 @@ const Resume = (): JSX.Element => {
     const responseFormatted = response ? JSON.parse(response) : [];
 
     const expensives = responseFormatted.filter(
-      (transactions: ITransactionProps) => transactions.type === "Outcome"
+      (expensiveTransaction: ITransactionProps) =>
+        expensiveTransaction.type === "Outcome" &&
+        new Date(expensiveTransaction.date).getMonth() ===
+          summaryDate.getMonth() &&
+        new Date(expensiveTransaction.date).getFullYear() ===
+          summaryDate.getFullYear()
     );
 
     const expensivesTotalValue = expensives.reduce(
@@ -72,14 +92,44 @@ const Resume = (): JSX.Element => {
     setDataExpensives(totalCategoryExpensive);
   };
 
-  useEffect(() => {
-    loadData();
-  }, [dataExpensives]);
+  useFocusEffect(
+    useCallback(() => {
+      loadData();
+    }, [dataExpensives])
+  );
 
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.chartContainer}>
+          <View style={styles.monthSelected}>
+            <TouchableOpacity
+              style={styles.monthSelectButton}
+              onPress={() => handleChangeDate("prev")}
+            >
+              <MaterialIcons
+                name="keyboard-arrow-left"
+                color={theme.colors.shape}
+                size={25}
+              />
+            </TouchableOpacity>
+
+            <Text style={styles.monthText}>
+              {format(summaryDate, "MMMM, yyyy")}
+            </Text>
+
+            <TouchableOpacity
+              style={styles.monthSelectButton}
+              onPress={() => handleChangeDate("next")}
+            >
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                color={theme.colors.shape}
+                size={25}
+              />
+            </TouchableOpacity>
+          </View>
+
           <VictoryPie
             data={dataExpensives}
             x="percent"
@@ -92,8 +142,8 @@ const Resume = (): JSX.Element => {
                 fill: theme.colors.textGray,
               },
             }}
-            width={350}
-            height={350}
+            width={320}
+            height={320}
           />
         </View>
 
