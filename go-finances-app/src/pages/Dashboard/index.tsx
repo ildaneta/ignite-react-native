@@ -153,10 +153,6 @@ const Dashboard = (): JSX.Element => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
   useFocusEffect(
     useCallback(() => {
       loadData();
