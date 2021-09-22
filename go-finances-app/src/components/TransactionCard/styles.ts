@@ -42,6 +42,6 @@ icon: {
 textDescriptionExpense: {
   fontFamily: theme.fonts.regular,
   fontSize: 14,
-  color: theme.colors.textGrayDarker
+  color: theme.colors.text_gray_darker
 }
 })

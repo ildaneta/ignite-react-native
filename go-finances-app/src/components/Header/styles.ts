@@ -24,13 +24,13 @@ export const styles = StyleSheet.create({
   greetings: {
     fontSize: 18,
     fontFamily: theme.fonts.regular,
-    color: theme.colors.textWhite
+    color: theme.colors.text_white
   },
 
   userName: {
     fontSize: 18,
     fontFamily: theme.fonts.bold,
-    color: theme.colors.textWhite
+    color: theme.colors.text_white
   },
 
   logoff: {

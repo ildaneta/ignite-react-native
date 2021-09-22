@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: theme.colors.textGray,
+    color: theme.colors.text_gray,
     fontFamily: theme.fonts.medium,
     fontSize: 15
   }

@@ -139,7 +139,7 @@ const Resume = (): JSX.Element => {
               labels: {
                 fontSize: 15,
                 fontWeight: "bold",
-                fill: theme.colors.textGray,
+                fill: theme.colors.text_gray,
               },
             }}
             width={320}

@@ -41,7 +41,7 @@ const TransactionCard = ({ data }: Props): JSX.Element => {
         <View style={styles.containerExpensesType}>
           <FontAwesome
             name={data.category.icon}
-            color={theme.colors.textGrayDarker}
+            color={theme.colors.text_gray_darker}
             size={18}
             style={styles.icon}
           />

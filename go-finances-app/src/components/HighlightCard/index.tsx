@@ -31,7 +31,7 @@ const typeIcon = (transactionType: string) => {
     );
   } else {
     return (
-      <Feather name="dollar-sign" color={theme.colors.textGray} size={34} />
+      <Feather name="dollar-sign" color={theme.colors.text_gray} size={34} />
     );
   }
 };

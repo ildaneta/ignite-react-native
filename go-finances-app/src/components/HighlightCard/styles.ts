@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   headerTitle: {
     fontFamily: theme.fonts.medium,
     fontSize: 15,
-    color: theme.colors.textGray
+    color: theme.colors.text_gray
   },
 
   containerValue: {
@@ -31,12 +31,12 @@ export const styles = StyleSheet.create({
   value: {
     fontFamily: theme.fonts.bold,
     fontSize: 32,
-    color: theme.colors.textGray
+    color: theme.colors.text_gray
   },
 
   description: {
     fontFamily: theme.fonts.medium,
     fontSize: 12,
-    color: theme.colors.textGray
+    color: theme.colors.text_gray
   }
 })
