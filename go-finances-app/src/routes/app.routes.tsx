@@ -10,12 +10,13 @@ const Tab = createBottomTabNavigator();
 import Dashboard from "../pages/Dashboard";
 import Register from "../pages/Register";
 import Resume from "../pages/Resume";
+import LogIn from "../pages/LogIn";
 
 const routes = (): JSX.Element => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: theme.colors.highLightMenu,
+        tabBarActiveTintColor: theme.colors.highLight_menu,
         tabBarLabelPosition: "beside-icon",
         tabBarStyle: {
           height: 80,
@@ -26,7 +27,9 @@ const routes = (): JSX.Element => {
           fontFamily: theme.fonts.medium,
         },
         tabBarBackground: () => (
-          <View style={{ backgroundColor: "#202023", flex: 1 }} />
+          <View
+            style={{ backgroundColor: theme.colors.background_header, flex: 1 }}
+          />
         ),
       }}
     >
@@ -34,7 +37,6 @@ const routes = (): JSX.Element => {
         name="Listing"
         component={Dashboard}
         options={{
-          headerTitleAlign: "center",
           headerBackgroundContainerStyle: {
             backgroundColor: theme.colors.background,
           },
