@@ -9,18 +9,18 @@ export const theme = {
     attention: '#e83f5b',
     attention_light: '#a32f40',
     shape: '#f1f1f1',
-    textMediumGray: '#333',
-    textGray: '#ccc9c9',
-    textGrayDarker: '#afaeae',
-    textWhite: '#f1f1f1',
+    text_gray: '#ccc9c9',
+    text_gray_darker: '#afaeae',
+    text_white: '#f1f1f1',
     text: '#111',
     background: '#1e1e21',
+    background_header: '#202023',
     background_light: '#3a3a3a',
     background_gray: '#777',
     background_gray_light: '#999',
     background_white_medium: '#ededed',
     highLight: '#765A74',
-    highLightMenu: '#D46A92'
+    highLight_menu: '#D46A92'
   },
 
   fonts: {
