@@ -19,7 +19,7 @@ This app was built to conclude the ignite mobile course, which included the foll
 4. Show error messages if you forget to fill in any input values
 5. Show spending graphs within a month
 
-## :camera: Final image
+## :camera: Final images
 
 <img width="896" alt="Login screen" src="https://user-images.githubusercontent.com/21963291/135530695-576a2961-c7e3-411a-8ab6-766f1508c95a.png" />
 <img width="895" alt="dashboard screen" src="https://user-images.githubusercontent.com/21963291/135530716-f3f07cae-c500-485a-b606-26e5a7891b89.png" />
