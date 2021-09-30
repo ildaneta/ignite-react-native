@@ -6,7 +6,6 @@
 - [Final Images](#camera-final-images)
 - [How to download the project and run it?](#computer-how-to-run-the-app)
 - [Technologies utilized](#wrench-technologies-utilized)
-- [License](#scroll-license)
 - [Dev](#pencil-dev)
 
 ## :pushpin: Motivation
@@ -46,6 +45,7 @@ expo start
 - External fonts by Google
 - Social login using OAuth2
 - Icons from vector icons
+- Victory chart
 
 ## :pencil: Dev
 
