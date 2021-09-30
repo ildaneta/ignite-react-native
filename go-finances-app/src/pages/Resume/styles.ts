@@ -5,9 +5,8 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.background,
     flex: 1,
-    paddingTop: 20,
+    paddingTop: 15,
     paddingHorizontal: 24,
-    paddingBottom: 30
   },
 
   chartContainer: {
@@ -20,7 +19,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    marginBottom: 25
   },
 
   monthSelectButton: {
