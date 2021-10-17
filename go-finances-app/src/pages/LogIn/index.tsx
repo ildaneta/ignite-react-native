@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, Text, Platform, Alert } from "react-native";
-
-import { useTheme } from "styled-components";
+import { View, Text, Platform, Alert, ActivityIndicator } from "react-native";
 
 import AppleIcon from "../../assets/apple-icon.svg";
 import GoogleIcon from "../../assets/google-icon.svg";
@@ -13,14 +11,28 @@ import { styles } from "./styles";
 import { useAuthContext } from "../../context/AuthContext";
 
 const LogIn = (): JSX.Element => {
-  const { signInWithGoogle } = useAuthContext();
+  const [isLoading, setIsLoading] = useState(false);
+  const { signInWithGoogle, signInWithApple } = useAuthContext();
 
   const handleSignInWithGoogle = async () => {
-    await signInWithGoogle();
     try {
+      setIsLoading(true);
+      return await signInWithGoogle();
     } catch (error) {
       console.log(error);
-      Alert.alert("Não foi possível conectar a sua conta google!");
+      Alert.alert("Não foi possível conectar a sua conta Google!");
+      setIsLoading(false);
+    }
+  };
+
+  const handleSignInWithApple = async () => {
+    try {
+      setIsLoading(true);
+      return await signInWithApple();
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Não foi possível conectar a sua conta Apple!");
+      setIsLoading(false);
     }
   };
 
@@ -44,8 +56,14 @@ const LogIn = (): JSX.Element => {
       />
 
       {Platform.OS === "ios" && (
-        <ButtonIcon label="LogIn with Apple" icon={<AppleIcon />} />
+        <ButtonIcon
+          label="LogIn with Apple"
+          icon={<AppleIcon />}
+          onPress={handleSignInWithApple}
+        />
       )}
+
+      {isLoading && <ActivityIndicator />}
     </View>
   );
 };

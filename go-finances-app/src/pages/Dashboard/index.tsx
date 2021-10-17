@@ -24,6 +24,7 @@ import {
 } from "../../utils/dashboard";
 
 import { styles } from "./styles";
+import { useAuthContext } from "../../context/AuthContext";
 export interface DataListProps extends ITransactionProps {
   id: string;
 }
@@ -115,13 +116,19 @@ const Dashboard = (): JSX.Element => {
     }, [])
   );
 
+  const { user, signOut } = useAuthContext();
+
+  const LogOut = async () => {
+    await signOut();
+  };
+
   return (
     <ScrollView style={styles.container}>
       {isLoading ? (
         <ActivityIndicator color={"#fff"} />
       ) : (
         <>
-          <Header onPress={() => {}} />
+          <Header onPress={LogOut} uri={user.photo!} name={user.name} />
 
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <HighlightCard

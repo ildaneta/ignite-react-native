@@ -10,22 +10,25 @@ import { AntDesign } from "@expo/vector-icons";
 
 import { styles } from "./styles";
 
-type LogoutButton = BorderlessButtonProperties;
+interface LogoutButton extends BorderlessButtonProperties {
+  uri: string;
+  name: string;
+}
 
-const Header = ({ ...rest }: LogoutButton): JSX.Element => {
+const Header = ({ uri, name, ...rest }: LogoutButton): JSX.Element => {
   return (
     <View style={styles.containerHeader}>
       <View style={styles.containerUser}>
         <Image
           style={styles.userImage}
           source={{
-            uri: "https://avatars.githubusercontent.com/u/21963291?v=4",
+            uri: uri,
           }}
         />
 
         <View>
           <Text style={styles.greetings}>Hello,</Text>
-          <Text style={styles.userName}>Ilda</Text>
+          <Text style={styles.userName}>{name}</Text>
         </View>
       </View>
 

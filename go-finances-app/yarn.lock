@@ -4935,6 +4935,13 @@ expo-app-loading@^1.1.2:
   dependencies:
     expo-splash-screen "~0.11.2"
 
+expo-apple-authentication@~3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/expo-apple-authentication/-/expo-apple-authentication-3.1.0.tgz#3ba01a474c3ac22f53f47832ee53c4ea7befc135"
+  integrity sha512-4dUn7P1iCtFzm8dvg7+BwD/YiHb7NbLbivcYc9zUazixw5cR5sf62AD4lvkdKhO/CHa0edLb8bsTAE+wbDpSpw==
+  dependencies:
+    "@expo/config-plugins" "^1.0.18"
+
 expo-application@~3.1.2:
   version "3.1.2"
   resolved "https://registry.npmjs.org/expo-application/-/expo-application-3.1.2.tgz"

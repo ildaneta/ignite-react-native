@@ -13,9 +13,9 @@ import {
 } from "@expo-google-fonts/poppins";
 import AppLoading from "expo-app-loading";
 
-import { NavigationContainer } from "@react-navigation/native";
+import { AuthProvider } from "./src/context/AuthContext";
 
-import AppRoutes from "./src/routes/app.routes";
+import Routes from "./src/routes";
 
 import theme from "./src/global/styles/theme";
 
@@ -47,9 +47,9 @@ export default function App() {
             backgroundColor: theme.colors.secondary,
           }}
         >
-          <NavigationContainer>
-            <AppRoutes />
-          </NavigationContainer>
+          <AuthProvider>
+            <Routes />
+          </AuthProvider>
         </SafeAreaView>
       </ThemeProvider>
     </>
