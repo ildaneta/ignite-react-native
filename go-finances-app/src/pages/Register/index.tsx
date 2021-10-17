@@ -21,6 +21,7 @@ import TypeButton from "../../components/Form/TypeButton";
 import InputSelect from "../../components/Form/InputSelect";
 import CategorySelect from "../CategorySelect";
 import theme from "../../global/styles/theme";
+import { useAuthContext } from "../../context/AuthContext";
 
 interface IFormData {
   name: string;
@@ -79,8 +80,10 @@ const Register = (): JSX.Element => {
       date: new Date(),
     };
 
+    const { user } = useAuthContext();
+
     try {
-      const transactionsKey = "@gofinances:transactions";
+      const transactionsKey = `@gofinances:transactions_user:${user.id}`;
       const data = await AsyncStorage.getItem(transactionsKey);
       const currentData = data ? JSON.parse(data) : [];
 

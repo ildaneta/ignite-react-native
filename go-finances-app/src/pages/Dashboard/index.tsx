@@ -44,9 +44,14 @@ const Dashboard = (): JSX.Element => {
     {} as IHighlightData
   );
   const [isLoading, setIsLoading] = useState(true);
+  const { user, signOut } = useAuthContext();
+
+  const LogOut = async () => {
+    await signOut();
+  };
 
   const loadData = async () => {
-    const transactionsKey = "@gofinances:transactions";
+    const transactionsKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(transactionsKey);
 
     let entriesTotal = 0;
@@ -115,12 +120,6 @@ const Dashboard = (): JSX.Element => {
       loadData();
     }, [])
   );
-
-  const { user, signOut } = useAuthContext();
-
-  const LogOut = async () => {
-    await signOut();
-  };
 
   return (
     <ScrollView style={styles.container}>
