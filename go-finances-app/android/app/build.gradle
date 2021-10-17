@@ -132,7 +132,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.gofinancesapp"
+        applicationId "com.gofinances"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

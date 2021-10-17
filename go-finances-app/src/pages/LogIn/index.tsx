@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, Platform, Alert } from "react-native";
 
 import { useTheme } from "styled-components";
@@ -15,20 +15,14 @@ import { useAuthContext } from "../../context/AuthContext";
 const LogIn = (): JSX.Element => {
   const { signInWithGoogle } = useAuthContext();
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  const theme = useTheme();
-
-  async function handleSignInWithGoogle() {
+  const handleSignInWithGoogle = async () => {
+    await signInWithGoogle();
     try {
-      setIsLoading(true);
-      return await signInWithGoogle();
     } catch (error) {
       console.log(error);
-      Alert.alert("Não foi possível conectar a conta Google");
-      setIsLoading(false);
+      Alert.alert("Não foi possível conectar a sua conta google!");
     }
-  }
+  };
 
   return (
     <View style={styles.container}>

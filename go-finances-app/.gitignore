@@ -2,5 +2,7 @@
 node_modules/
 build
 .DS_Store
+.expo/
+/ios/Pods/
 
 .env
