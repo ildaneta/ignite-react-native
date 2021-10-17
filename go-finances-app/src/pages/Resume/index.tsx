@@ -12,6 +12,7 @@ import { styles } from "./styles";
 import { ITransactionProps } from "../../components/TransactionCard";
 import { categories } from "../../utils/categories";
 import theme from "../../global/styles/theme";
+import { useAuthContext } from "../../context/AuthContext";
 
 interface ITotalCategoryExpensiveProps {
   name: string;
@@ -25,6 +26,7 @@ const Resume = (): JSX.Element => {
   const [dataExpensives, setDataExpensives] = useState<
     ITotalCategoryExpensiveProps[]
   >([]);
+  const { user } = useAuthContext();
 
   const [summaryDate, setSummaryDate] = useState(new Date());
 
@@ -39,7 +41,7 @@ const Resume = (): JSX.Element => {
   };
 
   const loadData = async () => {
-    const transactionsKey = "@gofinances:transactions";
+    const transactionsKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(transactionsKey);
 
     const responseFormatted = response ? JSON.parse(response) : [];
