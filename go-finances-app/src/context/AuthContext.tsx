@@ -5,21 +5,19 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const { CLIENT_ID } = process.env;
 const { REDIRECT_URI } = process.env;
 
-interface IAuthContextData {
-  user: User;
-  signInWithGoogle(): Promise<void>;
-  signOut(): Promise<void>;
-  userStorageLoading: boolean;
-}
-
-interface User {
+interface IUser {
   id: string;
   name: string;
   email: string;
   photo?: string;
 }
 
-interface AuthorizationResponse {
+interface IAuthContextData {
+  user: IUser;
+  signInWithGoogle(): Promise<void>;
+}
+
+interface IAuthorizationResponse {
   params: {
     access_token: string;
   };
@@ -29,12 +27,9 @@ interface AuthorizationResponse {
 const AuthContext = createContext({} as IAuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<User>({} as User);
-  const [userStorageLoading, setUserStorageLoading] = useState(true);
+  const [user, setUser] = useState<IUser>({} as IUser);
 
-  const userStorageKey = "@gofinances:user";
-
-  const signInWithGoogle = async () => {
+  async function signInWithGoogle() {
     try {
       const RESPONSE_TYPE = "token";
       const SCOPE = encodeURI("profile email");
@@ -43,7 +38,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
       const { type, params } = (await AuthSession.startAsync({
         authUrl,
-      })) as AuthorizationResponse;
+      })) as IAuthorizationResponse;
 
       if (type === "success") {
         const response = await fetch(
@@ -58,42 +53,21 @@ const AuthProvider: React.FC = ({ children }) => {
           name: userInfo.given_name,
           photo: userInfo.picture,
         });
-
-        console.log(userInfo);
       }
-    } catch (error: any) {
+    } catch (error) {
       throw new Error(error);
     }
-  };
-
-  const signOut = async () => {
-    setUser({} as User);
-
-    await AsyncStorage.removeItem(userStorageKey);
-  };
-
-  useEffect(() => {
-    async function loadUserStorageDate() {
-      const userStorage = await AsyncStorage.getItem(userStorageKey);
-
-      if (userStorage) {
-        const userLogged = JSON.parse(userStorage) as User;
-        setUser(userLogged);
-      }
-
-      setUserStorageLoading(false);
-    }
-
-    loadUserStorageDate();
-  }, []);
+  }
 
   return (
     <AuthContext.Provider
       value={{
-        user,
+        user: {
+          name: "ilda e vinicius",
+          id: "1",
+          email: "ildaneta@gmail.com",
+        },
         signInWithGoogle,
-        signOut,
-        userStorageLoading,
       }}
     >
       {children}
