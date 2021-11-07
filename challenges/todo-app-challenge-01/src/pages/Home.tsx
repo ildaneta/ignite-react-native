@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, Keyboard, StyleSheet, View } from 'react-native';
 import { Header } from '../components/Header/index';
-import { Task, TasksList } from '../components/TasksList/index';
+import { ITask } from '../components/TaskItem';
+import { TasksList } from '../components/TasksList/index';
 import { TodoInput } from '../components/TodoInput/index';
 
+export interface IEditTaskProps {
+  taskNewTitle: string;
+  taskId: number;
+}
+
 export function Home() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
 
   function handleAddTask(newTaskTitle: string) {
     const data = {
@@ -13,6 +19,17 @@ export function Home() {
       title: newTaskTitle,
       done: false,
     };
+
+    const repetedWord = tasks.find((task) => {
+      return task.title === newTaskTitle;
+    });
+
+    if (repetedWord) {
+      return Alert.alert(
+        'Task já cadastrada',
+        `A palavra: ${repetedWord.title},  já existe, com isso não é possível adicioná-la novamente!`
+      );
+    }
 
     setTasks((oldState) => [...oldState, data]);
   }
@@ -31,7 +48,30 @@ export function Home() {
   }
 
   function handleRemoveTask(id: number) {
-    setTasks(tasks.filter((item) => item.id !== id));
+    Alert.alert('Remover item', 'Tem certeza que deseja apagar esse ToDo?', [
+      {
+        text: 'Sim',
+        onPress: () => setTasks(tasks.filter((item) => item.id !== id)),
+      },
+      {
+        text: 'Cancelar',
+        onPress: () => Keyboard.dismiss,
+      },
+    ]);
+  }
+
+  function handleEditTask({ taskId, taskNewTitle }: IEditTaskProps) {
+    const updatedTasks = tasks.map((task) => ({ ...task }));
+
+    const taskWithNewTitle = updatedTasks.find((task) => task.id === taskId);
+
+    if (!taskWithNewTitle) {
+      return;
+    }
+
+    taskWithNewTitle.title = taskNewTitle;
+
+    setTasks(updatedTasks);
   }
 
   return (
@@ -41,6 +81,7 @@ export function Home() {
       <TodoInput addTask={handleAddTask} />
 
       <TasksList
+        editTask={handleEditTask}
         tasks={tasks}
         toggleTaskDone={handleToggleTaskDone}
         removeTask={handleRemoveTask}
