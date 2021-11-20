@@ -8,7 +8,8 @@ export const styles = StyleSheet.create({
     marginBottom: 4,
     borderRadius: 4,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 50
   },
 
   taskMarker: {
@@ -25,7 +26,14 @@ export const styles = StyleSheet.create({
   taskText: {
     color: '#f6f6f6',
     fontFamily: 'Inter-Medium',
-    width: 260
+    width: 200,
+    height: 40
+  },
+
+  containerItems: {
+    marginRight: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
   },
 
   taskMarkerDone: {
@@ -42,6 +50,7 @@ export const styles = StyleSheet.create({
     color: '#1DB863',
     textDecorationLine: 'line-through',
     fontFamily: 'Inter-Medium',
-    width: 260
-  }
+    width: 230
+  },
+
 })
