@@ -70,7 +70,7 @@ export function RegisterLoginData() {
             testID="service-name-input"
             title="Nome do serviço"
             name="service_name"
-            error={errors && errors.name}
+            error={errors && errors?.service_name?.message}
             control={control}
             autoCapitalize="sentences"
             autoCorrect
@@ -79,7 +79,7 @@ export function RegisterLoginData() {
             testID="email-input"
             title="E-mail"
             name="email"
-            error={errors && errors.name}
+            error={errors && errors?.email?.message}
             control={control}
             autoCorrect={false}
             autoCapitalize="none"
@@ -89,7 +89,7 @@ export function RegisterLoginData() {
             testID="password-input"
             title="Senha"
             name="password"
-            error={errors && errors.name}
+            error={errors && errors?.password?.message}
             control={control}
             secureTextEntry
           />
