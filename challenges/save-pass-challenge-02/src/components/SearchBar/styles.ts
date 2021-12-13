@@ -27,7 +27,7 @@ export const Input = styled(TextInput)`
 `;
 
 export const Button = styled.Pressable`
-  background: #FFCC00;
+  background: #888;
   padding: 16px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -36,6 +36,6 @@ export const Button = styled.Pressable`
 
 export const Icon = styled(Feather).attrs({
   size: 24,
-  color: '#3D434D'
+  color: '#fff'
 })``;
 

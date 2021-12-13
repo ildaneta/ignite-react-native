@@ -56,7 +56,7 @@ export const SecondaryMessage = styled.Text`
 
 export const AddButton = styled.Pressable`
   padding: ${RFValue(14.5)}px;
-  border: 1.5px #508bfc;
+  border: 1.5px #cecece;
   border-radius: 4px;
 `;
 
