@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     paddingTop: 20,
     paddingHorizontal: 24,
-    paddingBottom: 30
   },
 
   title: {
@@ -16,7 +15,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: theme.colors.text_white,
     marginBottom: 16,
-    marginTop: 32
+    marginTop: 16
   },
 })
 
