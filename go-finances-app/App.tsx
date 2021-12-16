@@ -19,10 +19,6 @@ import Routes from "./src/routes";
 
 import theme from "./src/global/styles/theme";
 
-LogBox.ignoreLogs([
-  "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation - use another VirtualizedList-backed container instead. at node_modules/react-native/Libraries/Lists/VirtualizedList.js:1195:14 in ScrollView.Context.Consumer.props.children at node_modules/@expo-google-fonts/poppins/useFonts.js:21:27 in loadAsync.then$argument_0",
-]);
-
 export default function App() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -35,10 +31,7 @@ export default function App() {
   }
   return (
     <>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor={theme.colors.secondary}
-      />
+      <StatusBar barStyle="light-content" translucent={true} />
 
       <ThemeProvider theme={theme}>
         <SafeAreaView
