@@ -127,7 +127,7 @@ const Dashboard = (): JSX.Element => {
         <ActivityIndicator color={"#fff"} />
       ) : (
         <>
-          <Header onPress={LogOut} uri={user.photo!} name={user.name} />
+          <Header onPress={LogOut} uri={user.picture!} name={user.name} />
 
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <HighlightCard
