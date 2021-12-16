@@ -122,69 +122,72 @@ const Dashboard = (): JSX.Element => {
   );
 
   return (
-    <ScrollView style={styles.container}>
-      {isLoading ? (
-        <ActivityIndicator color={"#fff"} />
-      ) : (
-        <>
-          <Header onPress={LogOut} uri={user.picture!} name={user.name} />
+    <>
+      <View style={styles.container}>
+        <Header onPress={LogOut} uri={user.picture!} name={user.name} />
 
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <HighlightCard
-              title="Receipts"
-              amount={highlightData?.entries?.amount}
-              lastTransaction={
-                data.some((item) => item.type === "Income")
-                  ? `Last entry was ${month(
-                      latestDate(data, "Income")
-                    )} ${latestDay(data, "Income")}`
-                  : ""
-              }
-              type="up"
-            />
-            <HighlightCard
-              title="Outflows"
-              amount={highlightData?.expensive?.amount}
-              lastTransaction={
-                data.some((item) => item.type === "Outcome")
-                  ? `Last out was ${month(
-                      latestDate(data, "Outcome")
-                    )} ${latestDay(data, "Outcome")}`
-                  : ""
-              }
-              type="down"
-            />
-            <HighlightCard
-              title="Total"
-              amount={highlightData.total.amount}
-              lastTransaction={
-                data.some((item) => item.type === "Income") ||
-                data.some((item) => item.type === "Outcome")
-                  ? `${lastMonthTotal(data)} from ${firstDateTransaction(
-                      data
-                    )} to ${latestDayTotal(data)}`
-                  : ""
-              }
-              type="total"
-            />
-          </ScrollView>
-
-          {data.length >= 1 ? <Text style={styles.title}>Listing</Text> : <></>}
-
-          <FlatList
-            style={{ flex: 0 }}
-            initialNumToRender={data.length}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ marginBottom: 40 }}
-            data={data}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <TransactionCard data={item} />}
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <HighlightCard
+            title="Receipts"
+            amount={highlightData?.entries?.amount}
+            lastTransaction={
+              data.some((item) => item.type === "Income")
+                ? `Last entry was ${month(
+                    latestDate(data, "Income")
+                  )} ${latestDay(data, "Income")}`
+                : ""
+            }
+            type="up"
           />
+          <HighlightCard
+            title="Outflows"
+            amount={highlightData?.expensive?.amount}
+            lastTransaction={
+              data.some((item) => item.type === "Outcome")
+                ? `Last out was ${month(
+                    latestDate(data, "Outcome")
+                  )} ${latestDay(data, "Outcome")}`
+                : ""
+            }
+            type="down"
+          />
+          <HighlightCard
+            title="Total"
+            amount={highlightData.total.amount}
+            lastTransaction={
+              data.some((item) => item.type === "Income") ||
+              data.some((item) => item.type === "Outcome")
+                ? `${lastMonthTotal(data)} from ${firstDateTransaction(
+                    data
+                  )} to ${latestDayTotal(data)}`
+                : ""
+            }
+            type="total"
+          />
+        </ScrollView>
 
-          <View style={{ height: 20, marginBottom: 20 }} />
-        </>
-      )}
-    </ScrollView>
+        {data.length >= 1 ? <Text style={styles.title}>Listing</Text> : <></>}
+      </View>
+      <ScrollView style={styles.container}>
+        {isLoading ? (
+          <ActivityIndicator color={"#fff"} />
+        ) : (
+          <>
+            <FlatList
+              style={{ flex: 0 }}
+              initialNumToRender={data.length}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ marginBottom: 40 }}
+              data={data}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => <TransactionCard data={item} />}
+            />
+
+            <View style={{ height: 20, marginBottom: 20 }} />
+          </>
+        )}
+      </ScrollView>
+    </>
   );
 };
 
