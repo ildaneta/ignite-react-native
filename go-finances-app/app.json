@@ -6,8 +6,21 @@
     "slug": "gofinances",
     "scheme": "gofinances",
     "version": "1.0.0",
+    "icon": "./resources/gofinances-icon.png",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "splash": {
+      "image": "./resources/splash.png",
+      "backgroundColor": "#1e1e21"
+    },
+    "ios": {
+      "bundleIdentifier": "com.gofinances",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.gofinances",
+      "versionCode": 1
+    }
   }
 }
