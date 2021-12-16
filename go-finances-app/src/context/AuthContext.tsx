@@ -10,7 +10,7 @@ interface IUser {
   id: string;
   name: string;
   email: string;
-  photo?: string;
+  picture?: string;
 }
 
 interface IAuthContextData {
@@ -57,7 +57,7 @@ const AuthProvider: React.FC = ({ children }) => {
           id: userInfo.id,
           email: userInfo.email,
           name: userInfo.given_name,
-          photo: userInfo.picture,
+          picture: userInfo.picture,
         });
 
         await AsyncStorage.setItem(userStorageKey, JSON.stringify(userInfo));
@@ -79,13 +79,13 @@ const AuthProvider: React.FC = ({ children }) => {
       if (credential) {
         const name = credential.fullName!.givenName!;
         const email = credential.email!;
-        const photo = `https://ui-avatars.com/api?name=${name}&length=1`;
+        const picture = `https://ui-avatars.com/api?name=${name}&length=1`;
 
         const userLogged = {
           id: String(credential.user),
           name,
           email,
-          photo,
+          picture,
         };
 
         setUser(userLogged);
