@@ -37,7 +37,8 @@ const schema = Yup.object().shape({
 });
 
 const Register = (): JSX.Element => {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
+  const { user } = useAuthContext();
 
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
   const [transactionType, setTransactionType] = useState("");
@@ -80,15 +81,19 @@ const Register = (): JSX.Element => {
       date: new Date(),
     };
 
-    const { user } = useAuthContext();
+    console.log("new transaction data: ", newTransactionData);
 
     try {
       const transactionsKey = `@gofinances:transactions_user:${user.id}`;
       const data = await AsyncStorage.getItem(transactionsKey);
       const currentData = data ? JSON.parse(data) : [];
 
+      console.log("current data: ", currentData);
+
       const dataFormatted = [...currentData, newTransactionData];
 
+      console.log("Data formated: ", dataFormatted);
+      console.log("Transaction type: ", transactionType);
       await AsyncStorage.setItem(
         transactionsKey,
         JSON.stringify(dataFormatted)
@@ -97,7 +102,7 @@ const Register = (): JSX.Element => {
       reset();
       setTransactionType("");
       setCategory({ key: "category", name: "Category" });
-      navigation.navigate("Listing");
+      navigate("Dashboard");
     } catch (error) {
       console.log(error);
       Alert.alert("Was not possible to save");
