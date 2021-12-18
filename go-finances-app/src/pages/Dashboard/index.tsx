@@ -153,7 +153,7 @@ const Dashboard = (): JSX.Element => {
           />
           <HighlightCard
             title="Total"
-            amount={highlightData.total.amount}
+            amount={highlightData?.total?.amount}
             lastTransaction={
               data.some((item) => item.type === "Income") ||
               data.some((item) => item.type === "Outcome")
