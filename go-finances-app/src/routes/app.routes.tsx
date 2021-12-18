@@ -21,6 +21,7 @@ const routes = (): JSX.Element => {
         tabBarStyle: {
           height: 80,
           paddingBottom: 10,
+          paddingLeft: 10,
         },
         tabBarLabelStyle: {
           fontSize: 14,
@@ -28,13 +29,16 @@ const routes = (): JSX.Element => {
         },
         tabBarBackground: () => (
           <View
-            style={{ backgroundColor: theme.colors.background_header, flex: 1 }}
+            style={{
+              backgroundColor: theme.colors.background_header,
+              flex: 1,
+            }}
           />
         ),
       }}
     >
       <Tab.Screen
-        name="Listing"
+        name="Dashboard"
         component={Dashboard}
         options={{
           headerBackgroundContainerStyle: {
