@@ -15,11 +15,11 @@
       "backgroundColor": "#1e1e21"
     },
     "ios": {
-      "bundleIdentifier": "com.gofinances",
+      "bundleIdentifier": "com.gofinancesMobile",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.gofinances",
+      "package": "com.gofinancesMobile",
       "versionCode": 1
     }
   }
