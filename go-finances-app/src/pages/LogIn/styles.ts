@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 24,
     alignItems: 'center',
-    paddingTop: 60,
+    justifyContent: 'center',
     backgroundColor:  theme.colors.background
   },
 
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   description: {
     width: 290,
     fontFamily: theme.fonts.medium,
-    fontSize: 30,
+    fontSize: 28,
     textAlign: 'center',
     color: theme.colors.shape,
     marginBottom: 60
