@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 22,
     alignItems:'center',
-    marginTop: 20
+    marginTop: 40
   },
 
   containerUser: {
@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
   },
 
   greetings: {
+    marginTop: 5,
     fontSize: 18,
     fontFamily: theme.fonts.regular,
     color: theme.colors.text_white
