@@ -41,13 +41,19 @@ const LogIn = (): JSX.Element => {
       <GoFinancesIcon />
       <Text style={styles.title}>GoFinances</Text>
 
-      <Text numberOfLines={3} style={styles.description}>
+      <Text numberOfLines={4} style={styles.description}>
         A very simple control for your Personal Finances
       </Text>
 
-      <Text numberOfLines={2} style={styles.textLogin}>
-        Login with one of the accounts below
-      </Text>
+      {Platform.OS === "android" ? (
+        <Text numberOfLines={3} style={styles.textLogin}>
+          Login with Google account
+        </Text>
+      ) : (
+        <Text numberOfLines={3} style={styles.textLogin}>
+          Login with one of the accounts below
+        </Text>
+      )}
 
       <ButtonIcon
         label="LogIn with Google"
