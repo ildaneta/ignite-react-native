@@ -1,8 +1,8 @@
 {
-  "name": "gofinances",
-  "displayName": "gofinances",
+  "name": "GoFinances",
+  "displayName": "GoFinances",
   "expo": {
-    "name": "gofinances",
+    "name": "GoFinances",
     "slug": "gofinances",
     "scheme": "gofinances",
     "version": "1.0.0",
